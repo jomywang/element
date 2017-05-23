@@ -44,7 +44,7 @@
     <el-table-column
       fixed="right"
       label="操作"
-      width="200">
+      width="250">
       <template scope="scope">
         
         <el-button @click="paid" type="success" size="small">已付</el-button>
@@ -89,10 +89,12 @@
         this.$http.get(url).then(res =>{
           this.tableData3 = res.body.data;
           this.tableTile = res.body.title;
-          var arr = this.tableData3[0]
+          var totalLen = this.tableData3.length;
+          var arr = this.tableData3[0];
              for(var i in arr){
                 this.msg.push(i);
              }
+         this.$emit('totalLength',totalLen);
         })       
       },
        tableRowClassName(row, index) {

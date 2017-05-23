@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate1">
 <form action="javascript:;" data-action="url" ref="submitForm">
     <el-row :gutter="20">
     <el-col :span="4">

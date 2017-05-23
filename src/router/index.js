@@ -16,10 +16,11 @@ export default new Router({
       component: Hello,
       children:[
                     { path: '/', component: box},
-                    { path: '/*zzds', component: zzds},
-                    { path: '/*sqds', component: sqds},
-                    { path: '/*zxyhgl/scly/hw', component: sqds},
-                    { path: '/*zxyhgl', component: sqds}
+                    { path: '/*crm', component: box},
+                    { path: '/*crm/crm_pay_list', component: zzds},
+                    { path: '/*crm/crm_maintain', component: box},
+                    { path: '/*crm/crm', component: sqds},
+                    { path: '/*crm/crm_intent_list', component: sqds}
                     
                ]
     }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate1">
 <form action="javascript:;" data-action="url" ref="submitForm">
     <el-row :gutter="20">
     <el-col :span="4">
@@ -80,10 +80,10 @@
     
 
     <div>
-      <hy-tableright></hy-tableright> 
+      <hy-tableright v-on:totalLength="getTotalLength"></hy-tableright> 
     </div>
 
-    <!-- <hy-form1></hy-form1> -->
+    <hy-form1 :tableLength="tableLen"></hy-form1>
 
   </div>
 </template>
@@ -103,7 +103,8 @@ var $ = require('jquery');
   export default {
     data() {
       return {
-        formArr:[]       
+        formArr:[],
+        tableLen:0 //表格总数量      
       }
     },
     components:{ hySelect,hySelectdel,hySelecttime,hyTable,hyTable1,hyTableright,hyInputsearch,hyFormnum,hyForm1},
@@ -134,6 +135,9 @@ var $ = require('jquery');
         //  this.$http.post(url, data).then(res =>{
            
         // }) 
+      },
+      getTotalLength(val){
+        this.tableLen = val;
       }
 
     }
@@ -141,4 +145,5 @@ var $ = require('jquery');
   }
 </script>
 <style>
+
 </style>

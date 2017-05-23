@@ -2,7 +2,7 @@
 <menu>
    <el-row class="tac" >
 	<el-col >  
-	    <el-menu default-active="0" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" router >
+	    <el-menu :default-active="curNav" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" router  theme="dark">
 
 		    <!-- nav -->
 		    <template v-for="(item,indexs) in navList">
@@ -71,7 +71,8 @@ export default {
   name: 'nav',
   data () { 
     return {
-	    	navList:[]    
+	    	navList:[],
+	    	curNav:''    
     }
   },
   mounted:function(){
@@ -86,20 +87,36 @@ export default {
         //console.log(key, keyPath);
       },
       getNavData(){
-      	        var url = './static/js/nav.js';
-		        this.$http.get(url).then(res =>{
-		        	this.navList = res.body.data;
+
+               var getSecretData = function(res,type){
+	                 	var str = res.data,
+	                       salt = res.salt,
+	                       ekey = "9HkocpYLeG1LNi5m",
+	                        key = $.md5(salt + ekey).substr(0,24);
+	                        if (type === "decode") {
+	                        	var getData = des(key, atob(str), 0, '', '', 1);	               
+	                        }if (type === "encode" ) {
+	                        	var getData = btoa(des(key, str, 1, 0, '', 1));
+	                        };
+	                        return getData;
+				}
+			
+                var url = 'http://192.168.97.252:8080/rest/do?service=menuListService&version=1.0&data={}&time=123456&salt=456&test=yes&token=123456';
+				this.$http.get(url).then(res =>{
+		        	var decryptedData = getSecretData(res.body,"decode");
+		        	this.navList = JSON.parse(decryptedData);                    
 		        	this.setTitle();
-		        }) 
+		        }); 
 
       },
       setTitle(){
       	    
 	    	var ipath = this.$route.path;
-	    	ipath = ipath.replace('*','');
+	    	    ipath = ipath.replace('*','');
 	    	var pathArr = [];
-	    	pathArr = ipath.split('\/');
+	    	    pathArr = ipath.split('\/');
 	    	pathArr.splice(0,1);
+	    	this.curNav = '/*'+ pathArr[0];
     	    var d = document,	    	
     	   titleN = [],//存放当前导航信息
     	        n = 0,
@@ -137,6 +154,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-a{color:#48576a;text-decoration: none;}
+a{text-decoration: none;color: #C4CAD1}
 /*.router-link-active{color: #20a0ff}*/
+.el-menu{background: transparent;}
+.el-menu-item, .el-submenu__title{font-size: 16px;line-height: 30px;height: 60px;padding:15px 0;}
+.el-menu--dark .el-menu-item, .el-menu--dark .el-submenu__title{color: #C4CAD1}
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active{    background: #36AEEA;
+    color: #FFF;}
+.el-menu-item:hover{background: transparent !important;}
+.el-submenu__title a{font-size: 16px !important;}
 </style>
