@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
-  <meta content="yes" name="apple-mobile-web-app-capable"/>
-  <meta content="yes" name="apple-touch-fullscreen"/>
-  <meta content="telephone=no,email=no" name="format-detection"/>
-  <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <meta content="telephone=no,email=no" name="format-detection"/>
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
     <title>配方查询</title>
     <script type="text/javascript" src="https://storage.dreambigcareer.com/dbc/websitnew/ui/vue.js"></script>
 </head>
@@ -18,50 +18,50 @@
       data: {
         weight: '',
         type: 'youpi',
-        naiyoushuangObj:{
-          dannaiyou:150,
-          huangyou:100,
-          tangfen:40
+        naiyoushuangObj: {
+          dannaiyou: 150,
+          huangyou: 100,
+          tangfen: 40
         },
-        qifendangaoObj:{
-          jidan:2,
-          niunai:18,
-          selayou:16,
-          difen:28,
-          yumidianfen:6,
-          shatang:5,
-          yan:0.5
+        qifendangaoObj: {
+          jidan: 2,
+          niunai: 18,
+          selayou: 16,
+          difen: 28,
+          yumidianfen: 6,
+          shatang: 5,
+          yan: 0.5
         },
-        bojuedangaojuanObj:{
-          jidan:4,
-          niunai:52,
-          selayou:40,
-          difen:56,
-          shatang:55,
-          bojuechabao:1
+        bojuedangaojuanObj: {
+          jidan: 4,
+          niunai: 52,
+          selayou: 40,
+          difen: 56,
+          shatang: 55,
+          bojuechabao: 1
         },
-        kekedangaojuanObj:{
-          jidan:4,
-          niunai:52,
-          selayou:40,
-          difen:44,
-          kekefen:12,
-          shatang:55
+        kekedangaojuanObj: {
+          jidan: 4,
+          niunai: 52,
+          selayou: 40,
+          difen: 44,
+          kekefen: 12,
+          shatang: 55
         },
-        mochadangaojuanObj:{
-          jidan:4,
-          niunai:52,
-          selayou:40,
-          difen:50,
-          mochafen:6,
-          shatang:55
+        mochadangaojuanObj: {
+          jidan: 4,
+          niunai: 52,
+          selayou: 40,
+          difen: 50,
+          mochafen: 6,
+          shatang: 55
         },
-        dangaojuanObj:{
-          jidan:4,
-          niunai:52,
-          selayou:40,
-          difen:56,
-          shatang:55
+        dangaojuanObj: {
+          jidan: 4,
+          niunai: 52,
+          selayou: 40,
+          difen: 56,
+          shatang: 55
         },
         yingshinaiyoushuangObj: {
           niunai: 200,
@@ -88,8 +88,8 @@
           huangyou: 160,
           difen: 155,
           yan: 2,
-          tudoudianfen:35,
-          naifen:20
+          tudoudianfen: 35,
+          naifen: 20
         },
         quqiObj: {
           niunai: 40,
@@ -149,211 +149,150 @@
         },
         priceMapObj: {
           jidan: {name: '鸡蛋', price: 1.5},
-          danbai: {name: '蛋白', price: 0},
+          danbai: {name: '蛋白', price: 0.03},
           danhuang: {name: '蛋黄', price: 0.05},
           dannaiyou: {name: '淡奶油', price: 0.1032},
-          shatang: {
-            name: '白砂糖', price: 0.017
-          },
-          xingrenfen: {
-            name: '杏仁粉', price: 0.168
-          },
-          mifen: {
-            name: '米粉', price: 0.048
-          },
-          tangfen: {
-            name: '糖粉', price: 0.023
-          },
-          yan: {
-            name: '盐', price: 0.005
-          },
-          huangyou: {
-            name: '黄油', price: 0.1
-          },
-          niunai: {
-            name: '牛奶', price: 0.01
-          },
-          kekefen: {
-            name: '可可粉', price: 0.1
-          },
-          mochafen: {
-            name: '抹茶粉', price: 0.98
-          },
-          difen: {
-            name: '低筋面粉', price: 0.017
-          },
-          kafeijiang: {
-            name: '咖啡酱', price: 0.5
-          },
-          tudoudianfen: {
-            name: '土豆淀粉', price: 0.016
-          },
-          yumidianfen:{
-            name: '玉米淀粉', price: 0.016
-          },
-          naifen: {
-            name: '奶粉', price: 0.056
-          },
-          selayou: {
-            name: '色拉油', price: 0.04
-          },
-          zhongfen: {
-            name: '中筋面粉', price: 0.01
-          },
-          shui: {
-            name: '水', price: 0
-          },
-          bojuechabao: {
-            name: '伯爵茶包', price: 1
-          }
+          shatang: {name: '白砂糖', price: 0.017},
+          xingrenfen: {name: '杏仁粉', price: 0.168},
+          mifen: {name: '米粉', price: 0.048},
+          tangfen: {name: '糖粉', price: 0.023},
+          yan: {name: '盐', price: 0.005},
+          huangyou: {name: '黄油', price: 0.1},
+          niunai: {name: '牛奶', price: 0.01},
+          kekefen: {name: '可可粉', price: 0.1},
+          mochafen: {name: '抹茶粉', price: 0.98},
+          difen: {name: '低筋面粉', price: 0.017},
+          kafeijiang: {name: '咖啡酱', price: 0.5},
+          tudoudianfen: {name: '土豆淀粉', price: 0.016},
+          yumidianfen: {name: '玉米淀粉', price: 0.016},
+          naifen: {name: '奶粉', price: 0.056},
+          selayou: {name: '色拉油', price: 0.04},
+          zhongfen: {name: '中筋面粉', price: 0.01},
+          shui: {name: '水', price: 0},
+          bojuechabao: {name: '伯爵茶包', price: 1}
         },
         baseMapObj: {
-          kafeiQuqi: {
-            name: '咖啡曲奇', weight: 160
-          },//咖啡曲奇，按黄油换算
-          mochaQuqi: {
-            name: '抹茶曲奇', weight: 160
-          },//抹茶曲奇，按黄油换算
-          qklQuqi: {
-            name: '可可曲奇', weight: 160
-          },//可可曲奇，按黄油换算
-          quqi: {
-            name: '原味曲奇', weight: 160
-          },//原味曲奇按黄油换算
-          dianfenQuqi: {
-            name: '土豆淀粉曲奇', weight: 160
-          },//土豆淀粉曲奇
-          jidanQuqi: {
-            name: '全蛋曲奇', weight: 250
-          },//土豆淀粉曲奇
-          zhenniQuqi: {
-            name: '珍妮曲奇', weight: 160
-          },//土豆淀粉曲奇
-          makalong: {
-            name: '马卡龙', weight: 36,type:'danbai'
-          },//按蛋白换算
-          youpi: {
-            name: '蛋黄酥皮', weight: 49
-          },//按黄油换算
-          yousu: {
-            name: '油酥', weight: 140
-          },//按黄油换算
-          yingshinaiyoushuang:{
-            name: '英式奶油霜', weight: 260
-          },//按黄油换算
-          dangaojuan:{
-            name: '原味蛋糕卷', weight: 4,type:'jidan'
-          },//按鸡蛋换算
-          mochadangaojuan:{
-            name: '抹茶蛋糕卷', weight: 4,type:'jidan'
-          },//按鸡蛋换算
-          kekedangaojuan:{
-            name: '巧克力蛋糕卷', weight: 4,type:'jidan'
-          },//按鸡蛋换算
-          bojuedangaojuan:{
-            name: '伯爵红茶蛋糕卷', weight: 4,type:'jidan'
-          },//按鸡蛋换算
-          qifendangao:{
-            name: '戚风蛋糕', weight: 2,type:'jidan'
-          },//按鸡蛋换算
-          naiyoushuang:{
-            name: '裱花奶油霜', weight: 100
-          },//按黄油换算
+          kafeiQuqi: {name: '咖啡曲奇'},//咖啡曲奇，按黄油换算
+          mochaQuqi: {name: '抹茶曲奇'},//抹茶曲奇，按黄油换算
+          qklQuqi: {name: '可可曲奇'},//可可曲奇，按黄油换算
+          quqi: {name: '原味曲奇'},//原味曲奇按黄油换算
+          dianfenQuqi: {name: '土豆淀粉曲奇'},//土豆淀粉曲奇
+          jidanQuqi: {name: '全蛋曲奇'},//土豆淀粉曲奇
+          zhenniQuqi: {name: '珍妮曲奇'},//土豆淀粉曲奇
+          makalong: {name: '马卡龙', type: 'danbai'},//按蛋白换算
+          youpi: {name: '蛋黄酥皮' },//按黄油换算
+          yousu: {name: '油酥'},//按黄油换算
+          yingshinaiyoushuang: {name: '英式奶油霜'},//按黄油换算
+          dangaojuan: {name: '原味蛋糕卷', type: 'jidan'},//按鸡蛋换算
+          mochadangaojuan: {name: '抹茶蛋糕卷', type: 'jidan'},//按鸡蛋换算
+          kekedangaojuan: {name: '巧克力蛋糕卷', type: 'jidan'},//按鸡蛋换算
+          bojuedangaojuan: {name: '伯爵红茶蛋糕卷', type: 'jidan'},//按鸡蛋换算
+          qifendangao: {name: '戚风蛋糕', type: 'jidan'},//按鸡蛋换算
+          naiyoushuang: {name: '裱花奶油霜' },//按黄油换算
         },
-        canshuMap:{}
+        canshuMap: {}
       },
       created: function () {
 
       },
-      mounted:function() {
+      mounted: function () {
         for (let k in this.baseMapObj) {
-            let name = k + 'Num';
-             this.$set(this.canshuMap,name,[]);
+          let name = k + 'Num';
+          this.$set(this.canshuMap, name, []);
         }
-        if(localStorage.getItem('type')){
+        if (localStorage.getItem('type')) {
           this.type = localStorage.getItem('type');
         }
-        if(localStorage.getItem('weight')){
+        if (localStorage.getItem('weight')) {
           this.weight = localStorage.getItem('weight');
           this.goSearch('first');
         }
-        
+
       },
       methods: {
-        changeType:function () {
-            localStorage.setItem('type',this.type);
-            this.weight && this.goSearch();
+        changeType: function () {
+          localStorage.setItem('type', this.type);
+          this.weight && this.goSearch();
         },
         filterNum: function (curNum) {
           return curNum.toString().indexOf('.') > 0 ? curNum.toFixed(2) : curNum
         },
         getAllPrice: function (i, type) {
+          let weightType = this.baseMapObj[type].type;
+          weightType = weightType ? weightType : 'huangyou';
           var num = 0;
-          num = this.baseMapObj[type].weight;
+          num = this[type+'Obj'][weightType];
           var total = 0;
           for (let k in this[type + 'Obj']) {
-            console.log(this[type + 'Obj'][k] * i / num * this.priceMapObj[k].price)
             total += this[type + 'Obj'][k] * i / num * this.priceMapObj[k].price
           }
-          if (type === 'makalong') {
-            total += 1;
-          }
+           
           return this.filterNum(total)
         },
-        filterList(k,str,type)
+        filterList(k, str, type)
         {
           return type ? this.canshuMap[k + str] : this[k + str]
         },
-        filterMakeNum(k,str){
+        filterWeight(k,type){
+          type = type ? type : 'huangyou';
+          return this[k + 'Obj'][type]
+        },
+        filterMakeNum(k, str){
           console.log(this[k + str])
           let name = k + str;
           let total = 0;
-          for(let i in this[name]){
-            total += this[name][i] * (this.weight/this[name].huangyou);
+          for (let i in this[name]) {
+            total += this[name][i] * (this.weight / this[name].huangyou);
           }
           let numberS = k === 'yousu' ? 11 : 18;
-          let num = (total/numberS).toFixed(2);
+          let num = (total / numberS).toFixed(2);
           return num
         },
-        goSearch: function (type){
-          
+        goSearch: function (type) {
+
           for (let k in this.baseMapObj) {
             this.canshuMap[k + 'Num'] = [];
           }
           this.canshuMap[this.type + 'Num'] = [this.weight];
-          localStorage.setItem('weight',this.weight);
+          localStorage.setItem('weight', this.weight);
         }
       }
     })
   }
 </script>
-    <div id='app'>
-        <div style="display: flex">
-            <select v-model="type" @change="changeType">
-                <option :value="key" v-for="(val,key) in baseMapObj">{{val.name}}</option>
-            </select>
-            <input type="tel" name="" v-model='weight' @blur="goSearch">
-            <span @click="goSearch"> 查询 </span>
-        </div>
-        
+<div id='app'>
+    <div style="display: flex">
+        <select v-model="type" @change="changeType">
+            <option :value="key" v-for="(val,key) in baseMapObj">{{val.name}}</option>
+        </select>
+        <input type="tel" name="" v-model='weight' @blur="goSearch">
+        <span @click="goSearch"> 查询 </span>
+    </div>
 
-        <p>按<template v-if="baseMapObj[this.type].type">{{priceMapObj[baseMapObj[this.type].type].name}}</template><template v-else>黄油</template>换算</p>
-        <div v-for='(val,k) in baseMapObj' >
-            <div v-for="i in filterList(k,'Num','weight')">
-                
-                <p v-for="(value,key) in filterList(k,'Obj')">
-                     <span>{{priceMapObj[key].name}}:</span>
-                     <span>{{filterNum(value * (i/val.weight))}}<template v-if="key==='jidan'">个</template><template v-else>g</template>
+
+    <p>按
+        <template v-if="baseMapObj[this.type].type">{{priceMapObj[baseMapObj[this.type].type].name}}</template>
+        <template v-else>黄油</template>
+        换算
+    </p>
+    <div v-for='(val,k) in baseMapObj'>
+        <div v-for="i in filterList(k,'Num','weight')">
+
+            <p v-for="(value,key) in filterList(k,'Obj')">
+                <span>{{priceMapObj[key].name}}:</span>
+                <!-- 按照{{val.type}}转换{{filterWeight(k,val.type)}}, -->
+                <span>{{filterNum(value * (i/filterWeight(k,val.type)))}}<template v-if="key==='jidan'">个</template><template
+                        v-else>g</template>
                      </span>
-                     
-                </p>
-                <p>成本:</span><span>{{getAllPrice(i,k)}}元</p>
-                <p v-if="k === 'yousu' || k === 'youpi'">{{k === 'yousu' ? 11 : 18}}g的可以做{{filterMakeNum(k,'Obj')}}个</p>
 
-            </div>
+            </p>
+            <p>成本:</span><span>{{getAllPrice(i,k)}}元</p>
+            <p v-if="k === 'yousu' || k === 'youpi'">{{k === 'yousu' ? 11 : 18}}g的可以做{{filterMakeNum(k,'Obj')}}个</p>
+
         </div>
-    
-    
+    </div>
+
+
     <div>
 </body>
 </html>
