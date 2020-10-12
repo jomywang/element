@@ -18,6 +18,30 @@
       data: {
         weight: '',
         type: 'youpi',
+        tangmiandangaoObj:{
+          jidan:2,
+          selayou:23,
+          difen:40,
+          haiyan:0.5,
+          niunai:42,
+          xiangcaogao:2,
+          shatang:34,
+          ningmengzhi:1,
+          yumidianfen:2
+        },
+        lasimashuObj:{
+          nuomifen:50,
+          huangyou:15,
+          shuiyi:35,
+          shui:60
+        },
+        nuomichuanObj:{
+          huangyou:23,
+          xingrenpian:50,
+          shatang:25,
+          shuiyi:26,
+          fengmi:5
+        },
         naiyoushuangObj: {
           dannaiyou: 150,
           huangyou: 100,
@@ -155,6 +179,7 @@
           shatang: {name: '白砂糖', price: 0.017},
           xingrenfen: {name: '杏仁粉', price: 0.168},
           mifen: {name: '米粉', price: 0.048},
+          nuomifen: {name: '糯米粉', price: 0.02},
           tangfen: {name: '糖粉', price: 0.023},
           yan: {name: '盐', price: 0.005},
           huangyou: {name: '黄油', price: 0.1},
@@ -169,7 +194,13 @@
           selayou: {name: '色拉油', price: 0.04},
           zhongfen: {name: '中筋面粉', price: 0.01},
           shui: {name: '水', price: 0},
-          bojuechabao: {name: '伯爵茶包', price: 1}
+          bojuechabao: {name: '伯爵茶包', price: 1},
+          xingrenpian:{name: '杏仁片', price: 0.14},
+          shuiyi:{name: '水怡', price: 0.024},
+          fengmi:{name: '蜂蜜', price: 0.1},
+          xiangcaogao:{name: '香草膏', price: 1.058},
+          ningmengzhi:{name: '柠檬汁', price: 0.120},
+          haiyan:{name: '海盐', price: 0.18},
         },
         baseMapObj: {
           kafeiQuqi: {name: '咖啡曲奇'},//咖啡曲奇，按黄油换算
@@ -188,7 +219,10 @@
           kekedangaojuan: {name: '巧克力蛋糕卷', type: 'jidan'},//按鸡蛋换算
           bojuedangaojuan: {name: '伯爵红茶蛋糕卷', type: 'jidan'},//按鸡蛋换算
           qifendangao: {name: '戚风蛋糕', type: 'jidan'},//按鸡蛋换算
+          tangmiandangao: {name: '烫面戚风小蛋糕', type: 'jidan'},//按鸡蛋换算
           naiyoushuang: {name: '裱花奶油霜' },//按黄油换算
+          nuomichuan:{name: '糯米船' },
+          lasimashu:{name: '拉丝麻薯' },
         },
         canshuMap: {}
       },
