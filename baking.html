@@ -18,159 +18,6 @@
       data: {
         weight: '',
         type: 'youpi',
-        tangmiandangaoObj:{
-          jidan:2,
-          selayou:23,
-          difen:40,
-          haiyan:0.5,
-          niunai:42,
-          xiangcaogao:2,
-          shatang:34,
-          ningmengzhi:1,
-          yumidianfen:2
-        },
-        lasimashuObj:{
-          nuomifen:50,
-          huangyou:15,
-          shuiyi:35,
-          shui:60
-        },
-        nuomichuanObj:{
-          huangyou:23,
-          xingrenpian:50,
-          shatang:25,
-          shuiyi:26,
-          fengmi:5
-        },
-        naiyoushuangObj: {
-          dannaiyou: 150,
-          huangyou: 100,
-          tangfen: 40
-        },
-        qifendangaoObj: {
-          jidan: 2,
-          niunai: 18,
-          selayou: 16,
-          difen: 28,
-          yumidianfen: 6,
-          shatang: 5,
-          yan: 0.5
-        },
-        bojuedangaojuanObj: {
-          jidan: 4,
-          niunai: 52,
-          selayou: 40,
-          difen: 56,
-          shatang: 55,
-          bojuechabao: 1
-        },
-        kekedangaojuanObj: {
-          jidan: 4,
-          niunai: 52,
-          selayou: 40,
-          difen: 44,
-          kekefen: 12,
-          shatang: 55
-        },
-        mochadangaojuanObj: {
-          jidan: 4,
-          niunai: 52,
-          selayou: 40,
-          difen: 50,
-          mochafen: 6,
-          shatang: 55
-        },
-        dangaojuanObj: {
-          jidan: 4,
-          niunai: 52,
-          selayou: 40,
-          difen: 56,
-          shatang: 55
-        },
-        yingshinaiyoushuangObj: {
-          niunai: 200,
-          danhuang: 80,
-          shatang: 20,
-          huangyou: 260
-        },
-        makalongObj: {
-          danbai: 36,
-          shatang: 32,
-          xingrenfen: 43,
-          mifen: 5,
-          tangfen: 40
-        },
-        jidanQuqiObj: {
-          danbai: 50,
-          tangfen: 100,
-          huangyou: 250,
-          difen: 300,
-          yan: 1.5
-        },
-        zhenniQuqiObj: {
-          tangfen: 100,
-          huangyou: 160,
-          difen: 155,
-          yan: 2,
-          tudoudianfen: 35,
-          naifen: 20
-        },
-        quqiObj: {
-          niunai: 40,
-          shatang: 65,
-          huangyou: 160,
-          difen: 200,
-          xingrenfen: 40,
-          yan: 2
-        },
-        dianfenQuqiObj: {
-          niunai: 40,
-          shatang: 65,
-          huangyou: 160,
-          difen: 200,
-          tudoudianfen: 40,
-          yan: 2
-        },
-        kafeiQuqiObj: {
-          niunai: 40,
-          shatang: 65,
-          huangyou: 160,
-          difen: 200,
-          xingrenfen: 40,
-          yan: 2,
-          kafeijiang: 7
-        },
-        mochaQuqiObj: {
-          niunai: 40,
-          shatang: 65,
-          huangyou: 160,
-          difen: 180,
-          xingrenfen: 40,
-          yan: 2,
-          mochafen: 8
-        },
-        qklQuqiObj: {
-          niunai: 40,
-          shatang: 65,
-          huangyou: 160,
-          difen: 180,
-          xingrenfen: 40,
-          yan: 2,
-          kekefen: 20
-        },
-        youpiObj: {
-          zhongfen: 300,
-          tangfen: 95,
-          shui: 117,
-          selayou: 40,
-          huangyou: 49,
-          yan: 1.5
-        },
-        yousuObj: {
-          difen: 387,
-          selayou: 62,
-          huangyou: 140
-        },
         priceMapObj: {
           jidan: {name: '鸡蛋', price: 1.5},
           danbai: {name: '蛋白', price: 0.03},
@@ -195,100 +42,265 @@
           zhongfen: {name: '中筋面粉', price: 0.01},
           shui: {name: '水', price: 0},
           bojuechabao: {name: '伯爵茶包', price: 1},
-          xingrenpian:{name: '杏仁片', price: 0.14},
-          shuiyi:{name: '水怡', price: 0.024},
-          fengmi:{name: '蜂蜜', price: 0.1},
-          xiangcaogao:{name: '香草膏', price: 1.058},
-          ningmengzhi:{name: '柠檬汁', price: 0.120},
-          haiyan:{name: '海盐', price: 0.18},
+          xingrenpian: {name: '杏仁片', price: 0.14},
+          shuiyi: {name: '水怡', price: 0.024},
+          fengmi: {name: '蜂蜜', price: 0.1},
+          xiangcaogao: {name: '香草膏', price: 1.058},
+          ningmengzhi: {name: '柠檬汁', price: 0.120},
+          haiyan: {name: '海盐', price: 0.18},
         },
         baseMapObj: {
-          kafeiQuqi: {name: '咖啡曲奇'},//咖啡曲奇，按黄油换算
-          mochaQuqi: {name: '抹茶曲奇'},//抹茶曲奇，按黄油换算
-          qklQuqi: {name: '可可曲奇'},//可可曲奇，按黄油换算
-          quqi: {name: '原味曲奇'},//原味曲奇按黄油换算
-          dianfenQuqi: {name: '土豆淀粉曲奇'},//土豆淀粉曲奇
-          jidanQuqi: {name: '全蛋曲奇'},//土豆淀粉曲奇
-          zhenniQuqi: {name: '珍妮曲奇'},//土豆淀粉曲奇
-          makalong: {name: '马卡龙', type: 'danbai'},//按蛋白换算
-          youpi: {name: '蛋黄酥皮' },//按黄油换算
-          yousu: {name: '油酥'},//按黄油换算
-          yingshinaiyoushuang: {name: '英式奶油霜'},//按黄油换算
-          dangaojuan: {name: '原味蛋糕卷', type: 'jidan'},//按鸡蛋换算
-          mochadangaojuan: {name: '抹茶蛋糕卷', type: 'jidan'},//按鸡蛋换算
-          kekedangaojuan: {name: '巧克力蛋糕卷', type: 'jidan'},//按鸡蛋换算
-          bojuedangaojuan: {name: '伯爵红茶蛋糕卷', type: 'jidan'},//按鸡蛋换算
-          qifendangao: {name: '戚风蛋糕', type: 'jidan'},//按鸡蛋换算
-          tangmiandangao: {name: '烫面戚风小蛋糕', type: 'jidan'},//按鸡蛋换算
-          naiyoushuang: {name: '裱花奶油霜' },//按黄油换算
-          nuomichuan:{name: '糯米船' },
-          lasimashu:{name: '拉丝麻薯' },
+          kafeiQuqi: {
+            name: '咖啡曲奇', 
+            peifang: {
+              niunai: 40,
+              shatang: 65,
+              huangyou: 160,
+              difen: 200,
+              xingrenfen: 40,
+              yan: 2,
+              kafeijiang: 7
+            }
+          },//咖啡曲奇，按黄油换算
+          mochaQuqi: {
+            name: '抹茶曲奇', peifang: {
+              niunai: 40,
+              shatang: 65,
+              huangyou: 160,
+              difen: 180,
+              xingrenfen: 40,
+              yan: 2,
+              mochafen: 8
+            }
+          },//抹茶曲奇，按黄油换算
+          qklQuqi: {
+            name: '可可曲奇', peifang: {
+              niunai: 40,
+              shatang: 65,
+              huangyou: 160,
+              difen: 180,
+              xingrenfen: 40,
+              yan: 2,
+              kekefen: 20
+            }
+          },//可可曲奇，按黄油换算
+          quqi: {
+            name: '原味曲奇', peifang: {
+              niunai: 40,
+              shatang: 65,
+              huangyou: 160,
+              difen: 200,
+              xingrenfen: 40,
+              yan: 2
+            }
+          },//原味曲奇按黄油换算
+          dianfenQuqi: {
+            name: '土豆淀粉曲奇', peifang: {
+              niunai: 40,
+              shatang: 65,
+              huangyou: 160,
+              difen: 200,
+              tudoudianfen: 40,
+              yan: 2
+            }
+          },//土豆淀粉曲奇
+          jidanQuqi: {
+            name: '全蛋曲奇', peifang: {
+              danbai: 50,
+              tangfen: 100,
+              huangyou: 250,
+              difen: 300,
+              yan: 1.5
+            }
+          },//土豆淀粉曲奇
+          zhenniQuqi: {
+            name: '珍妮曲奇', peifang: {
+              tangfen: 100,
+              huangyou: 160,
+              difen: 155,
+              yan: 2,
+              tudoudianfen: 35,
+              naifen: 20
+            }
+          },//土豆淀粉曲奇
+          makalong: {
+            name: '马卡龙', type: 'danbai', peifang: {
+              danbai: 36,
+              shatang: 32,
+              xingrenfen: 43,
+              mifen: 5,
+              tangfen: 40
+            }
+          },//按蛋白换算
+          youpi: {
+            name: '蛋黄酥皮', peifang: {
+              zhongfen: 300,
+              tangfen: 95,
+              shui: 117,
+              selayou: 40,
+              huangyou: 49,
+              yan: 1.5
+            }
+          },//按黄油换算
+          yousu: {
+            name: '油酥', peifang: {
+              difen: 387,
+              selayou: 62,
+              huangyou: 140
+            }
+          },//按黄油换算
+          yingshinaiyoushuang: {
+            name: '英式奶油霜', peifang: {
+              niunai: 200,
+              danhuang: 80,
+              shatang: 20,
+              huangyou: 260
+            }
+          },//按黄油换算
+          dangaojuan: {
+            name: '原味蛋糕卷', type: 'jidan', peifang: {
+              jidan: 4,
+              niunai: 52,
+              selayou: 40,
+              difen: 56,
+              shatang: 55
+            }
+          },//按鸡蛋换算
+          mochadangaojuan: {
+            name: '抹茶蛋糕卷', type: 'jidan', peifang: {
+              jidan: 4,
+              niunai: 52,
+              selayou: 40,
+              difen: 50,
+              mochafen: 6,
+              shatang: 55
+            }
+          },//按鸡蛋换算
+          kekedangaojuan: {
+            name: '巧克力蛋糕卷', type: 'jidan', peifang: {
+              jidan: 4,
+              niunai: 52,
+              selayou: 40,
+              difen: 44,
+              kekefen: 12,
+              shatang: 55
+            }
+          },//按鸡蛋换算
+          bojuedangaojuan: {
+            name: '伯爵红茶蛋糕卷', type: 'jidan', peifang: {
+              jidan: 4,
+              niunai: 52,
+              selayou: 40,
+              difen: 56,
+              shatang: 55,
+              bojuechabao: 1
+            }
+          },//按鸡蛋换算
+          qifendangao: {
+            name: '戚风蛋糕', type: 'jidan', peifang: {
+              jidan: 2,
+              niunai: 18,
+              selayou: 16,
+              difen: 28,
+              yumidianfen: 6,
+              shatang: 5,
+              yan: 0.5
+            }
+          },//按鸡蛋换算
+          tangmiandangao: {
+            name: '烫面戚风小蛋糕', type: 'jidan', peifang: {
+              jidan: 2,
+              selayou: 23,
+              difen: 40,
+              haiyan: 0.5,
+              niunai: 42,
+              xiangcaogao: 2,
+              shatang: 34,
+              ningmengzhi: 1,
+              yumidianfen: 2
+            }
+          },//按鸡蛋换算
+          naiyoushuang: {
+            name: '裱花奶油霜', peifang: {
+              dannaiyou: 150,
+              huangyou: 100,
+              tangfen: 40
+            }
+          },//按黄油换算
+          nuomichuan: {
+            name: '糯米船', peifang: {
+              huangyou: 23,
+              xingrenpian: 50,
+              shatang: 25,
+              shuiyi: 26,
+              fengmi: 5
+            }
+          },
+          lasimashu: {
+            name: '拉丝麻薯', peifang: {
+              nuomifen: 50,
+              huangyou: 15,
+              shuiyi: 35,
+              shui: 60
+            }
+          },
         },
         canshuMap: {}
       },
       created: function () {
-
-      },
-      mounted: function () {
-        for (let k in this.baseMapObj) {
-          let name = k + 'Num';
-          this.$set(this.canshuMap, name, []);
-        }
         if (localStorage.getItem('type')) {
           this.type = localStorage.getItem('type');
         }
         if (localStorage.getItem('weight')) {
           this.weight = localStorage.getItem('weight');
-          this.goSearch('first');
         }
-
+        for (let k in this.baseMapObj) {
+          if(!this.baseMapObj[k].type){
+            this.baseMapObj[k].type = 'huangyou';
+          }
+        }
+      },
+      mounted: function () {
       },
       methods: {
         changeType: function () {
           localStorage.setItem('type', this.type);
-          this.weight && this.goSearch();
         },
         filterNum: function (curNum) {
           return curNum.toString().indexOf('.') > 0 ? curNum.toFixed(2) : curNum
         },
-        getAllPrice: function (i, type) {
-          let weightType = this.baseMapObj[type].type;
-          weightType = weightType ? weightType : 'huangyou';
-          var num = 0;
-          num = this[type+'Obj'][weightType];
+        getBili:function (item){
+          return this.weight/item.peifang[item.type];
+        },
+        getAllPrice: function (item) {
+          let weightType = item.type;
+          let bili = this.getBili(item);
           var total = 0;
-          for (let k in this[type + 'Obj']) {
-            total += this[type + 'Obj'][k] * i / num * this.priceMapObj[k].price
+          for (let k in item.peifang) {
+            total += item.peifang[k] * bili * this.priceMapObj[k].price
           }
-           
+
           return this.filterNum(total)
         },
-        filterList(k, str, type)
-        {
-          return type ? this.canshuMap[k + str] : this[k + str]
-        },
-        filterWeight(k,type){
-          type = type ? type : 'huangyou';
-          return this[k + 'Obj'][type]
-        },
-        filterMakeNum(k, str){
-          console.log(this[k + str])
-          let name = k + str;
+        filterMakeNum(item,k){
           let total = 0;
-          for (let i in this[name]) {
-            total += this[name][i] * (this.weight / this[name].huangyou);
+          let bili = this.getBili(item);
+          for (let i in item.peifang) {
+            total += item.peifang[i]*bili;
           }
           let numberS = k === 'yousu' ? 11 : 18;
           let num = (total / numberS).toFixed(2);
           return num
         },
-        goSearch: function (type) {
-
-          for (let k in this.baseMapObj) {
-            this.canshuMap[k + 'Num'] = [];
-          }
-          this.canshuMap[this.type + 'Num'] = [this.weight];
+        changeWeight: function () {
           localStorage.setItem('weight', this.weight);
+        },
+        filterType:function(){
+         
+          let type = this.baseMapObj[this.type].type;
+          let obj = this.priceMapObj[type];
+          return obj.name
+          
         }
       }
     })
@@ -299,32 +311,28 @@
         <select v-model="type" @change="changeType">
             <option :value="key" v-for="(val,key) in baseMapObj">{{val.name}}</option>
         </select>
-        <input type="tel" name="" v-model='weight' @blur="goSearch">
-        <span @click="goSearch"> 查询 </span>
+        <input type="tel" name="" v-model='weight' @change="changeWeight">
     </div>
 
 
-    <p>按
-        <template v-if="baseMapObj[this.type].type">{{priceMapObj[baseMapObj[this.type].type].name}}</template>
-        <template v-else>黄油</template>
-        换算
-    </p>
-    <div v-for='(val,k) in baseMapObj'>
-        <div v-for="i in filterList(k,'Num','weight')">
+    <p>按{{filterType(type)}}换算</p>
+ 
 
-            <p v-for="(value,key) in filterList(k,'Obj')">
+    <template  v-for='(item,k) in baseMapObj' v-if="type && weight">
+        <div v-if="type === k">
+            <p v-for="(originalWeight,key) in item.peifang">
+
                 <span>{{priceMapObj[key].name}}:</span>
-                <!-- 按照{{val.type}}转换{{filterWeight(k,val.type)}}, -->
-                <span>{{filterNum(value * (i/filterWeight(k,val.type)))}}<template v-if="key==='jidan'">个</template><template
+                <span>{{filterNum(originalWeight * getBili(item))}}<template v-if="key==='jidan'">个</template><template
                         v-else>g</template>
                      </span>
 
             </p>
-            <p>成本:</span><span>{{getAllPrice(i,k)}}元</p>
-            <p v-if="k === 'yousu' || k === 'youpi'">{{k === 'yousu' ? 11 : 18}}g的可以做{{filterMakeNum(k,'Obj')}}个</p>
+            <p>成本:</span><span>{{getAllPrice(item)}}元</p>
+            <p v-if="k === 'yousu' || k === 'youpi'">{{k === 'yousu' ? 11 : 18}}g的可以做{{filterMakeNum(item,k)}}个</p>
 
         </div>
-    </div>
+    </template>
 
 
     <div>
