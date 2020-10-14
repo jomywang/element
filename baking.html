@@ -48,10 +48,14 @@
           xiangcaogao: {name: '香草膏', price: 1.058},
           ningmengzhi: {name: '柠檬汁', price: 0.120},
           haiyan: {name: '海盐', price: 0.18},
+          gaofen: {name: '高筋面粉', price: 0.02},
+          gaotangjiaomu: {name: '耐高糖酵母', price: 0.06},
+          danye: {name: '蛋液', price: 0.03},
+          ningmengpi: {name: '柠檬皮屑', price: 0.1},
         },
         baseMapObj: {
           kafeiQuqi: {
-            name: '咖啡曲奇', 
+            name: '咖啡曲奇',
             peifang: {
               niunai: 40,
               shatang: 65,
@@ -132,6 +136,23 @@
               tangfen: 40
             }
           },//按蛋白换算
+          yingshinaiyoushuang: {
+            name: '蛋黄奶油霜',type: 'danhuang', peifang: {
+              niunai: 200,
+              danhuang: 80,
+              shatang: 20,
+              huangyou: 260
+            }
+          },//按黄油换算
+          ningmengxian: {
+            name: '马卡龙柠檬夹馅',type: 'danye', peifang: {
+              huangyou: 300,
+              ningmengzhi: 160,
+              ningmengpi: 25,
+              shatang: 220,
+              danye: 200
+            }
+          },//按蛋白换算
           youpi: {
             name: '蛋黄酥皮', peifang: {
               zhongfen: 300,
@@ -149,14 +170,7 @@
               huangyou: 140
             }
           },//按黄油换算
-          yingshinaiyoushuang: {
-            name: '英式奶油霜', peifang: {
-              niunai: 200,
-              danhuang: 80,
-              shatang: 20,
-              huangyou: 260
-            }
-          },//按黄油换算
+          
           dangaojuan: {
             name: '原味蛋糕卷', type: 'jidan', peifang: {
               jidan: 4,
@@ -244,10 +258,24 @@
               shui: 60
             }
           },
+          baitusi: {
+            name: '柔软白吐司',
+            peifang: {
+              gaofen: 550,
+              niunai: 400,
+              jidan: 1,
+              shatang: 55,
+              gaotangjiaomu: 6,
+              yan: 5,
+              huangyou: 35
+            }
+          }
         },
-        canshuMap: {}
+        addList: [],
+        isShow:false,
       },
       created: function () {
+        this.baseMapObj = Object.assign({}, this.baseMapObj, this.getLocalPeifang());
         if (localStorage.getItem('type')) {
           this.type = localStorage.getItem('type');
         }
@@ -255,22 +283,30 @@
           this.weight = localStorage.getItem('weight');
         }
         for (let k in this.baseMapObj) {
-          if(!this.baseMapObj[k].type){
+          if (!this.baseMapObj[k].type) {
             this.baseMapObj[k].type = 'huangyou';
           }
         }
       },
       mounted: function () {
+
       },
       methods: {
+        getLocalPeifang(){
+          let peifangObj = {};
+          if (localStorage.getItem('addPeifang')) {
+            peifangObj = JSON.parse(localStorage.getItem('addPeifang'));
+          }
+          return peifangObj
+        },
         changeType: function () {
           localStorage.setItem('type', this.type);
         },
         filterNum: function (curNum) {
           return curNum.toString().indexOf('.') > 0 ? curNum.toFixed(2) : curNum
         },
-        getBili:function (item){
-          return this.weight/item.peifang[item.type];
+        getBili: function (item) {
+          return this.weight / item.peifang[item.type];
         },
         getAllPrice: function (item) {
           let weightType = item.type;
@@ -282,11 +318,11 @@
 
           return this.filterNum(total)
         },
-        filterMakeNum(item,k){
+        filterMakeNum(item, k){
           let total = 0;
           let bili = this.getBili(item);
           for (let i in item.peifang) {
-            total += item.peifang[i]*bili;
+            total += item.peifang[i] * bili;
           }
           let numberS = k === 'yousu' ? 11 : 18;
           let num = (total / numberS).toFixed(2);
@@ -295,46 +331,108 @@
         changeWeight: function () {
           localStorage.setItem('weight', this.weight);
         },
-        filterType:function(){
-         
+        filterType: function () {
+
           let type = this.baseMapObj[this.type].type;
           let obj = this.priceMapObj[type];
           return obj.name
-          
+
+        },
+        pushCailiao(){
+          let obj = {
+            name: '',
+            weight: '',
+          };
+          if(this.addList.length === 0){
+            obj.proType = 'huangyou';
+          }
+          this.addList.push(obj);
+          this.isShow = true;
+        },
+        saveCailiao(){
+          let obj = {
+            name: this.addList[0].proName,
+            type: this.addList[0].proType,
+            peifang: {}
+          };
+          for (let item of this.addList) {
+            obj.peifang[item.name] = item.weight;
+          }
+          var time = new Date().getTime();
+          let name = 'jomy' + time;
+          let curPeifangObj = {
+            [name]: obj
+          };
+          this.baseMapObj = Object.assign({}, this.baseMapObj, curPeifangObj);
+          let peifangObj = Object.assign({}, this.getLocalPeifang(), curPeifangObj);
+          localStorage.setItem('addPeifang', JSON.stringify(peifangObj));
+          this.isShow = false;
+          this.type = name;
+          this.changeType();
+        },
+        cancleSave(){
+          this.addList = [];
+          this.isShow = false;
         }
       }
     })
   }
 </script>
 <div id='app'>
-    <div style="display: flex">
-        <select v-model="type" @change="changeType">
-            <option :value="key" v-for="(val,key) in baseMapObj">{{val.name}}</option>
-        </select>
-        <input type="tel" name="" v-model='weight' @change="changeWeight">
-    </div>
+    <template v-if="!isShow">
+        <div style="display: flex">
+            <select v-model="type" @change="changeType">
+                <option :value="key" v-for="(val,key) in baseMapObj">{{val.name}}</option>
+            </select>
+            <input type="tel" name="" v-model='weight' @change="changeWeight">
+        </div>
 
 
-    <p>按{{filterType(type)}}换算</p>
- 
+        <p>按{{filterType(type)}}换算</p>
 
-    <template  v-for='(item,k) in baseMapObj' v-if="type && weight">
-        <div v-if="type === k">
-            <p v-for="(originalWeight,key) in item.peifang">
 
-                <span>{{priceMapObj[key].name}}:</span>
-                <span>{{filterNum(originalWeight * getBili(item))}}<template v-if="key==='jidan'">个</template><template
-                        v-else>g</template>
-                     </span>
+        <template v-for='(item,k) in baseMapObj' v-if="type && weight">
+            <div v-if="type === k">
+                <p v-for="(originalWeight,key) in item.peifang">
 
-            </p>
-            <p>成本:</span><span>{{getAllPrice(item)}}元</p>
-            <p v-if="k === 'yousu' || k === 'youpi'">{{k === 'yousu' ? 11 : 18}}g的可以做{{filterMakeNum(item,k)}}个</p>
+                    <span>{{priceMapObj[key].name}}:</span>
+                    <span>{{filterNum(originalWeight * getBili(item))}}<template v-if="key==='jidan'">个</template><template
+                            v-else>g</template>
+                             </span>
 
+                </p>
+                <p>成本:</span><span>{{getAllPrice(item)}}元</p>
+                <p v-if="k === 'yousu' || k === 'youpi'">{{k === 'yousu' ? 11 : 18}}g的可以做{{filterMakeNum(item,k)}}个</p>
+
+            </div>
+        </template>
+    </template>
+    <template v-if="isShow">
+        <div v-for="(item,i) in addList">
+            <template v-if="i===0">
+                <div>配方名称：<input name="" v-model='item.proName' placeholder="列如：蛋糕"></div>
+                <div>
+                    按什么转换：
+                    <select v-model="item.proType">
+                        <option :value="key" v-for="(val,key) in priceMapObj">{{val.name}}</option>
+                    </select>
+                </div>
+                <p>材料表</p>
+            </template>
+            <select v-model="item.name">
+                <option :value="key" v-for="(val,key) in priceMapObj">{{val.name}}</option>
+            </select>
+            <input type="tel" name="" v-model.number='item.weight'>
+        </div>
+        <div style="display: flex;line-height: 30px;text-align: center;">
+        <p style="flex: 1; background-color: #67C23A;" @click="pushCailiao">添加材料</p>
+        <p style="flex: 1;background-color: #409EFF" @click="saveCailiao">保存配方</p>
+        <p style="flex: 1;background-color: #909399" @click="cancleSave">取消</p>
         </div>
     </template>
+    <p style="position: fixed;bottom:0;left:0;    background-color: #1989fa;line-height: 300%;width: 100%;text-align: center;" @click="pushCailiao" v-if="!isShow">添加配方</p>
 
 
-    <div>
+</div>
 </body>
 </html>
