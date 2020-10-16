@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en" class="h100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文档说明</title>
+    <script type="text/javascript" src="https://storage.dreambigcareer.com/dbc/websitnew/ui/vue.js"></script>
+    <script type="text/javascript" src="vue-resource.js"></script>
+    <style type="text/css">
+        body {
+            font-size: 14px;
+            color: #364149;
+        }
+
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul, ol, dl {
+            list-style: none
+        }
+
+        .h100 {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex1 {
+            flex: 1
+        }
+
+        .left {
+            width: 300px;
+            height: 100%;
+            overflow-y: auto;
+            font-size: 15px;
+            background-color: #f5f7f9;
+            box-sizing: border-box;
+        }
+
+        .right {
+            padding: 30px 30px 30px 50px;
+            flex: 1;
+            box-sizing: border-box;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .right-box {
+            max-width: 950px;
+        }
+
+        .menu li {
+            height: 40px;
+            line-height: 40px;
+            padding-right: 34px;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+
+        .menu li.selection {
+            color: #1890ff;
+            border-right: 3px solid #1890ff;
+            background-color: #e6f7ff;
+        }
+
+        .menu li.selection .cur {
+            color: #1890ff;
+            border-right: 3px solid #1890ff;
+            background-color: #e6f7ff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            line-height: 1.8;
+        }
+
+        table td, table th {
+            border: 1px solid rgb(217, 217, 217);
+            padding: 0 10px;
+        }
+
+        table th {
+            background-color: #e9e9e9;
+        }
+
+        .txt-l {
+            text-align: left
+        }
+
+        .mt5 {
+            margin-top: 5px;
+        }
+
+        .mt10 {
+            margin-top: 10px;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .code-box pre {
+            padding: .7rem 1rem;
+            border-radius: 5px;
+            line-height: 1.6em;
+            background: #f8f8f8;
+            overflow-x: auto;
+        }
+
+        .search-box {
+            position: relative;
+            border-bottom: 1px solid #eaeaea;
+            margin-right: 10px;
+            margin-bottom: 15px;
+            padding-top: 15px;
+            margin-left: 10px;
+        }
+
+        .search-box .search-input {
+            background-color: #fff;
+            border: none;
+            line-height: 40px;
+            height: 40px;
+            padding-left: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 12px;
+            right: 6px;
+            z-index: 1;
+        }
+
+        .jiekou-box p {
+            line-height: 22px;
+        }
+
+        .jiekou-box .ipt-p input {
+            padding: 5px 10px;
+            width: 300px;
+            border: 1px solid #ccc
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #03a9f4;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="h100">
+<script type="text/javascript">
+  window.onload = function () {
+    new Vue({
+      el: "#app",
+      data: {
+        menuList: [],
+        curItem: {},
+        curSvs: '',
+        reqUrl: 'http://192.168.28.12:5000/',
+        keyword: '',
+        isShowTest: false,
+      },
+      computed: {
+        filteredkeyList: function () {
+          if (this.keyword) {
+            var self = this;
+            return self.menuList.filter(function (item) {
+              return item.name.indexOf(self.keyword) !== -1 || item.service.indexOf(self.keyword) !== -1
+            })
+          } else {
+            return this.menuList
+          }
+        }
+      },
+      created: function () {
+
+      },
+      mounted: function () {
+        this.getJsonData()
+      },
+      methods: {
+        getJsonData(){
+          this.$http.get('document.txt').then(res => {
+            console.log(res.body)
+            this.menuList = res.body;
+
+            for (let item of this.menuList) {
+              item.reqUrl = this.reqUrl + item.module + '/doService';
+              let reqObj = {
+                "salt": "064667",
+                "test": true,
+                "time": 1570076601,
+                "token": "72260716a581fe9ee5a806f7cdbd761a",
+                "data": {
+                  uid: 123,
+                  os: 'Win10',
+                  "token": "jGhIbuR3LQtj4lkbMNlQYHrKdiyl3yhV",
+                }
+              };
+              reqObj.service = item.service;
+              reqObj.version = item.version;
+              for (let child of item.request) {
+                let val = '';
+                if (child.dataType === "array" || child.dataType === "Array") {
+                  val = [];
+                } else if (child.dataType === "object" || child.dataType === "Object") {
+                  val = {};
+                }
+                reqObj.data[child.name] = val;
+              }
+              item.reqObj = reqObj;
+            }
+            if (this.menuList.length > 0) {
+              this.clickMenu(this.menuList[0])
+            }
+          })
+        },
+        clickMenu(item){
+          this.curItem = Object.assign({}, item);
+          this.curSvs = this.curItem.service;
+          this.isShowTest = false;
+        },
+        runCode(){
+          let dataObj = Object.assign({}, this.curItem.reqObj);
+          dataObj.data = {};
+          for (let item of this.curItem.request) {
+            dataObj.data[item.name] = item.val;
+          }
+
+          dataObj.data = JSON.stringify(dataObj.data);
+          dataObj.service = 'customerListService';
+          console.log(dataObj)
+          var self = this;
+          this.$http.post(this.curItem.reqUrl, JSON.stringify(dataObj), {
+            emulateJSON: true
+          }).then(result => {
+            self.$set(self.curItem,'backData',{})
+            self.curItem.backData = JSON.parse(result.bodyText);
+          })
+
+        }
+      }
+    })
+  }
+</script>
+<div id='app' class="h100">
+    <div class="box flex h100">
+        <!--menu-->
+        <template>
+            <div class="left">
+                <div class="search-box">
+                    <input type="text" v-model="keyword" placeholder="输入并搜索" class="search-input">
+                    <i class="el-icon-search search-icon"></i>
+                </div>
+                <ul class="menu">
+                    <li
+                            v-for="(item,i) in filteredkeyList"
+                            @click="clickMenu(item)"
+                            :class="{'selection':curSvs===item.service}"
+                    ><b>[{{item.module}}]</b> {{item.name}}
+                    </li>
+                </ul>
+            </div>
+        </template>
+
+        <!--detail-->
+        <template v-if="curSvs">
+            <div class="right">
+                <div class="right-box">
+                    <h4 style="font-size: 25px">{{curItem.name}}</h4>
+                    <div class="mt20" style="line-height: 24px;">
+                        <p><b>描述：</b>{{curItem.desc}}</p>
+                        <p><b>接口名：</b>{{curItem.service}}</p>
+                        <p><b>版本号：</b>{{curItem.version}}</p>
+                        <p><b>请求地址：</b>{{curItem.reqUrl}}</p>
+                        <p><b>作者：</b>{{curItem.author}}</p>
+                        <p class="mt20"><b>参数说明：</b></p>
+                    </div>
+                    <table class="txt-l mt5">
+                        <tr>
+                            <th>参数中文</th>
+                            <th>参数</th>
+                            <th>类型</th>
+                            <th>必须</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr v-for="item in curItem.request">
+                            <td>{{item.value}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.dataType}}</td>
+                            <td>{{item.required ? '是' : '否'}}</td>
+                            <td>{{item.note}}</td>
+                        </tr>
+                    </table>
+                    <p class="mt20"><b>请求体</b></p>
+                    <div class="code-box mt5">
+                        <pre><code>{{curItem.reqObj}}</code></pre>
+                    </div>
+
+
+                        <!--<div class="jiekou-box mt20">-->
+                            <!--<div class="mt5" v-for="(item,i) in curItem.request">-->
+                                <!--<p class="title"><span style="color: red" v-if="item.required">*</span>{{item.value}}-->
+                                <!--</p>-->
+                                <!--<div class="ipt-p flex">-->
+                                    <!--<p><input v-model="item.val"></p>-->
+                                    <!--<p v-if="item.note" style="font-size: 12px;color: #999;margin-left: 5px;">-->
+                                        <!--{{item.note}}</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<p class="mt20"><span class="btn" @click="runCode">运行</span></p>-->
+                        <template v-if="curItem.response">
+                            <p class="mt20"><b>返回结果：</b></p>
+                            <div class="code-box mt5" >
+                                <pre><code>{{curItem.response}}</code></pre>
+                            </div>
+                        </template>
+
+                </div>
+            </div>
+        </template>
+
+    </div>
+
+</div>
+</body>
+</html>

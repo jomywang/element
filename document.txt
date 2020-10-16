@@ -1,0 +1,100 @@
+[{
+	"author": "jerry.yan",
+	"desc": "User（用户管理）",
+	"module": "umc",
+	"name": "用户登录",
+	"request": [{
+		"dataType": "string",
+		"name": "phone",
+		"note": "用户手机号",
+		"required": true,
+		"value": "手机号"
+	}, {
+		"dataType": "string",
+		"name": "password",
+		"note": "",
+		"required": true,
+		"value": "密码"
+	}],
+	"service": "loginService",
+	"version": "1.0"
+}, {
+	"author": "jerry.yan",
+	"desc": "苹果第三方登录(JWT验证)",
+	"module": "umc",
+	"name": "苹果登录",
+	"request": [{
+		"dataType": "string",
+		"name": "identityToken",
+		"note": "前端从微信获取来的用户token",
+		"required": true,
+		"value": "微信token"
+	}],
+	"response": [{
+		"dataType": "string",
+		"name": "phone",
+		"note": "手机号",
+		"required": false,
+		"value": "手机号"
+	}, {
+		"dataType": "int",
+		"name": "uid",
+		"note": "用户ID主键",
+		"required": false,
+		"value": "用户ID"
+	}, {
+		"dataType": "string",
+		"name": "username",
+		"note": "",
+		"required": false,
+		"value": "用户名称"
+	}, {
+		"dataType": "string",
+		"name": "poster",
+		"note": "",
+		"required": false,
+		"value": "用户头像"
+	}, {
+		"dataType": "string",
+		"name": "token",
+		"note": "用户JWT令牌，颁发后不可撤回",
+		"required": false,
+		"value": "用户令牌"
+	}],
+	"service": "appleLoginService",
+	"version": "1.0"
+}, {
+	"author": "jerry.yan",
+	"desc": "Share（用户分享）",
+	"module": "umc",
+	"name": "微信分享",
+	"request": [{
+		"dataType": "string",
+		"name": "url",
+		"note": "获取签名页面链接",
+		"required": true,
+		"value": "获取签名页面链接"
+	}],
+	"service": "wechatShareService",
+	"version": "1.0"
+}, {
+	"author": "jerry.yan",
+	"desc": "User（用户管理）",
+	"module": "umc",
+	"name": "版本升级接口",
+	"request": [{
+		"dataType": "Long",
+		"name": "version",
+		"note": "",
+		"required": true,
+		"value": "版本号"
+	}, {
+		"dataType": "string",
+		"name": "os",
+		"note": "【android,iphone】",
+		"required": true,
+		"value": "系统"
+	}],
+	"service": "versionUpdateService",
+	"version": "1.0"
+}]
