@@ -69,6 +69,7 @@
           molifen: {name: '茉莉绿茶粉', price: 0.2},
           kafeifen: {name: '咖啡粉', price: 1},
           zhishifen: {name: '黄芝士粉', price: 0.4},
+          hongchafen:{name: '伯爵红茶粉', price: 0.1},
         },
         baseMapObj: {
           youpi: {
@@ -101,14 +102,14 @@
             }
           },//咖啡曲奇，按黄油换算
           mochaQuqi: {
-            name: '抹茶曲奇', peifang: {
-              niunai: 40,
-              shatang: 65,
-              huangyou: 160,
-              difen: 180,
-              xingrenfen: 40,
+            name: '伯爵红茶曲奇', peifang: {
+              niunai: 16,
+              tangfen: 60,
+              huangyou: 200,
+              difen: 186,
+              tudoudianfen: 40,
               yan: 2,
-              mochafen: 8
+              hongchafen: 15
             }
           },//抹茶曲奇，按黄油换算
           qklQuqi: {
@@ -162,7 +163,7 @@
             }
           },//土豆淀粉曲奇
           hanshimakalong: {
-            name: '韩式马卡龙', type: 'danbai', peifang: {
+            name: '瑞士马卡龙', type: 'danbai', peifang: {
               danbai: 160,
               shatang: 150,
               xingrenfen: 190,
@@ -407,7 +408,7 @@
           localStorage.setItem('type', this.type);
         },
         filterNum: function (curNum) {
-          return curNum.toString().indexOf('.') > 0 ? curNum.toFixed(2) : curNum
+          return curNum.toString().indexOf('.') > 0 ? curNum.toFixed(1) : curNum
         },
         getBili: function (item) {
           return this.weight / item.peifang[item.type];
