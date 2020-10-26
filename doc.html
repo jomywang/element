@@ -6,17 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>文档说明</title>
-    <script type="text/javascript" src="https://storage.dreambigcareer.com/dbc/websitnew/ui/vue.js"></script>
-    <script type="text/javascript" src="vue-resource.js"></script>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <script type="text/javascript" src="./js/vue-resource.js"></script>
     <style type="text/css">
         body {
-            font-size: 14px;
+            font-size: 17px;
             color: #364149;
         }
 
         * {
             margin: 0;
-            padding: 0
+            padding: 0;
+            font-family: 'Times New Roman','KaiTi'
         }
 
         ul, ol, dl {
@@ -40,7 +41,6 @@
             width: 300px;
             height: 100%;
             overflow-y: auto;
-            font-size: 15px;
             background-color: #f5f7f9;
             box-sizing: border-box;
         }
@@ -54,24 +54,28 @@
         }
 
         .right-box {
-            max-width: 950px;
+            width: 90%;
         }
 
         .menu li {
-            height: 40px;
             line-height: 40px;
             padding-right: 34px;
-            padding-left: 20px;
+            padding-left:30px;
             cursor: pointer;
+
         }
 
-        .menu li.selection {
+        .menu > li {
+            /*border-bottom: 1px solid #eaeaea;*/
+            line-height: 50px;
+        }
+
+        .menu li .selection {
             color: #1890ff;
-            border-right: 3px solid #1890ff;
-            background-color: #e6f7ff;
+
         }
 
-        .menu li.selection .cur {
+        .menu li .cur {
             color: #1890ff;
             border-right: 3px solid #1890ff;
             background-color: #e6f7ff;
@@ -114,6 +118,7 @@
             line-height: 1.6em;
             background: #f8f8f8;
             overflow-x: auto;
+            font-size: 15px;
         }
 
         .search-box {
@@ -171,35 +176,47 @@
         menuList: [],
         curItem: {},
         curSvs: '',
+        curModule: 'umc',
         reqUrl: 'http://192.168.28.12:5000/',
         keyword: '',
+        isShow: false,
         isShowTest: false,
+        menuObj: {},
+        isNull:false,
       },
-      computed: {
-        filteredkeyList: function () {
-          if (this.keyword) {
-            var self = this;
-            return self.menuList.filter(function (item) {
-              return item.name.indexOf(self.keyword) !== -1 || item.service.indexOf(self.keyword) !== -1
-            })
-          } else {
-            return this.menuList
-          }
-        }
-      },
+      computed: {},
       created: function () {
 
       },
       mounted: function () {
-        this.getJsonData()
+        this.getMenu()
       },
       methods: {
-        getJsonData(){
-          this.$http.get('document.txt').then(res => {
-            console.log(res.body)
-            this.menuList = res.body;
+        getMenu(){
+          this.$http.get('./json/nav.json').then(res => {
+            let menuObj = res.body;
+            for (let k in menuObj) {
+              this.menuObj[k] = {
+                name: menuObj[k],
+                module: k,
+                service: k
+              }
 
-            for (let item of this.menuList) {
+            }
+            this.getJsonData('umc');
+          })
+        },
+        getJsonData(module){
+
+          if(this.menuObj[module].list){
+            this.isNull = false;
+            return
+          }
+          let moduleName = './json/'+module+'.json';
+          this.$http.get(moduleName).then(res => {
+            this.isNull = false;
+            this.menuObj[module].list = res.body;
+            for (let item of this.menuObj[module].list) {
               item.reqUrl = this.reqUrl + item.module + '/doService';
               let reqObj = {
                 "salt": "064667",
@@ -207,8 +224,8 @@
                 "time": 1570076601,
                 "token": "72260716a581fe9ee5a806f7cdbd761a",
                 "data": {
-                  uid: 123,
-                  os: 'Win10',
+                  "uid": 123,
+                  "os": 'Win10',
                   "token": "jGhIbuR3LQtj4lkbMNlQYHrKdiyl3yhV",
                 }
               };
@@ -225,15 +242,24 @@
               }
               item.reqObj = reqObj;
             }
-            if (this.menuList.length > 0) {
-              this.clickMenu(this.menuList[0])
+            if (this.menuObj[module].list.length > 0) {
+              this.clickMenu(this.menuObj[module].list[0])
             }
+            this.isShow = true;
+          }).catch((data)=>{
+            this.isNull = true;
+            this.curSvs = '';
+            console.log('暂无数据')
           })
         },
         clickMenu(item){
+          this.isNull = false;
           this.curItem = Object.assign({}, item);
           this.curSvs = this.curItem.service;
-          this.isShowTest = false;
+        },
+        clickMenuModule(item){
+          this.curModule = item.module;
+          this.getJsonData(item.module);
         },
         runCode(){
           let dataObj = Object.assign({}, this.curItem.reqObj);
@@ -249,7 +275,7 @@
           this.$http.post(this.curItem.reqUrl, JSON.stringify(dataObj), {
             emulateJSON: true
           }).then(result => {
-            self.$set(self.curItem,'backData',{})
+            self.$set(self.curItem, 'backData', {})
             self.curItem.backData = JSON.parse(result.bodyText);
           })
 
@@ -263,27 +289,43 @@
         <!--menu-->
         <template>
             <div class="left">
-                <div class="search-box">
-                    <input type="text" v-model="keyword" placeholder="输入并搜索" class="search-input">
-                    <i class="el-icon-search search-icon"></i>
-                </div>
-                <ul class="menu">
+                <!--<div class="search-box">-->
+                <!--<input type="text" v-model="keyword" placeholder="输入并搜索" class="search-input">-->
+                <!--<i class="el-icon-search search-icon"></i>-->
+                <!--</div>-->
+                <ul class="menu" v-if="isShow">
                     <li
-                            v-for="(item,i) in filteredkeyList"
-                            @click="clickMenu(item)"
-                            :class="{'selection':curSvs===item.service}"
-                    ><b>[{{item.module}}]</b> {{item.name}}
+                            v-for="(item,key) in menuObj"
+                            @click="clickMenuModule(item)"
+                    >
+                        <p  :class="{'selection':curModule===item.module}"><b>
+                            {{item.name}}</b></p>
+                        <div v-if="item.list && item.list.length > 0" style="padding-bottom: 10px;">
+                            <ul>
+                                <li
+                                        v-for="(child,k) in item.list"
+                                        @click="clickMenu(child)"
+                                        :class="{'cur':curSvs===child.service}"
+                                >{{child.name}}
+                                </li>
+                            </ul>
+                        </div>
+
                     </li>
                 </ul>
             </div>
         </template>
 
         <!--detail-->
-        <template v-if="curSvs">
+        <template>
             <div class="right">
                 <div class="right-box">
-                    <h4 style="font-size: 25px">{{curItem.name}}</h4>
-                    <div class="mt20" style="line-height: 24px;">
+                    <template v-if="!curSvs">
+                        <p style="font-size: 24px;text-align: center;"><b>暂无接口</b></p>
+                    </template>
+                    <template v-else>
+                    <h4 style="font-size: 30px">{{curItem.name}}</h4>
+                    <div class="mt20" style="line-height: 25px;">
                         <p><b>描述：</b>{{curItem.desc}}</p>
                         <p><b>接口名：</b>{{curItem.service}}</p>
                         <p><b>版本号：</b>{{curItem.version}}</p>
@@ -313,24 +355,41 @@
                     </div>
 
 
-                        <!--<div class="jiekou-box mt20">-->
-                            <!--<div class="mt5" v-for="(item,i) in curItem.request">-->
-                                <!--<p class="title"><span style="color: red" v-if="item.required">*</span>{{item.value}}-->
-                                <!--</p>-->
-                                <!--<div class="ipt-p flex">-->
-                                    <!--<p><input v-model="item.val"></p>-->
-                                    <!--<p v-if="item.note" style="font-size: 12px;color: #999;margin-left: 5px;">-->
-                                        <!--{{item.note}}</p>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<p class="mt20"><span class="btn" @click="runCode">运行</span></p>-->
-                        <template v-if="curItem.response">
-                            <p class="mt20"><b>返回结果：</b></p>
-                            <div class="code-box mt5" >
-                                <pre><code>{{curItem.response}}</code></pre>
-                            </div>
-                        </template>
+                    <!--<div class="jiekou-box mt20">-->
+                    <!--<div class="mt5" v-for="(item,i) in curItem.request">-->
+                    <!--<p class="title"><span style="color: red" v-if="item.required">*</span>{{item.value}}-->
+                    <!--</p>-->
+                    <!--<div class="ipt-p flex">-->
+                    <!--<p><input v-model="item.val"></p>-->
+                    <!--<p v-if="item.note" style="font-size: 12px;color: #999;margin-left: 5px;">-->
+                    <!--{{item.note}}</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<p class="mt20"><span class="btn" @click="runCode">运行</span></p>-->
+                    <template v-if="curItem.response">
+                        <p class="mt20"><b>返回结果：</b></p>
+                        <div>
+                            <table class="txt-l mt5">
+                                <tr>
+                                    <th>参数中文</th>
+                                    <th>参数</th>
+                                    <th>类型</th>
+                                    <th>必须</th>
+                                    <th>说明</th>
+                                </tr>
+                                <tr v-for="item in curItem.response">
+                                    <td>{{item.value}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.dataType}}</td>
+                                    <td>{{item.required ? '是' : '否'}}</td>
+                                    <td>{{item.note}}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </template>
+                    </template>
 
                 </div>
             </div>
