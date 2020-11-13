@@ -70,6 +70,8 @@
           kafeifen: {name: '咖啡粉', price: 1},
           zhishifen: {name: '黄芝士粉', price: 0.4},
           hongchafen:{name: '伯爵红茶粉', price: 0.1},
+          lianru:{name: '炼乳', price: 0.1},
+          xianjiaomu:{name: '鲜酵母', price: 0.1},
         },
         baseMapObj: {
           youpi: {
@@ -343,8 +345,24 @@
               gaotangjiaomu: 6,
               yan: 5,
               huangyou: 35
-            }
-          }
+            },
+            type:'gaofen'
+          },
+          lianrutusi: {
+            name: '水合法炼乳吐司',
+            peifang: {
+              gaofen: 500,
+              naifen: 20,
+              shatang: 80,
+              lianru:30,
+              yan:6,
+              xianjiaomu:15,
+              danye: 30,
+              huangyou: 50,
+              shui:250
+            },
+            type:'gaofen'
+          },
         },
         addForm: {
           name: '',
@@ -551,7 +569,7 @@
 
         <template v-for='(item,k) in baseMapObj' v-if="type && weight">
             <div v-if="type === k">
-                <p v-for="(originalWeight,key) in item.peifang">
+                <p style="cursor: move;" v-for="(originalWeight,key) in item.peifang">
 
                     <span>{{priceMapObj[key].name}}:</span>
                     <span>{{filterNum(originalWeight * getBili(item))}}<template v-if="key==='jidan'">个</template><template
