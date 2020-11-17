@@ -473,6 +473,21 @@
         filterPeifang(val){
           let curObj = this.baseMapObj[this.type];
           let yuanpeifang = curObj.peifang[curObj.type];
+          let num = 0;
+          if(['shengtusi','tangzhong'].indexOf(val) > -1){
+            num = 5;
+          }
+          
+           
+          if(['lianrutusi','baitusi'].indexOf(val) > -1){
+            num = 2;
+          }
+          if(['yicitusi'].indexOf(val) > -1){
+            num = 1;
+          }
+          if(num){
+            return yuanpeifang + ' ,' + num + '个450g吐司'
+          }
           return yuanpeifang
         },
         changeType: function () {
