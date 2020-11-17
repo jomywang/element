@@ -374,6 +374,43 @@
             },
             type:'gaofen'
           },
+          tangzhong: {
+            name: '生吐司汤种',
+            peifang: {
+              gaofen: 50,
+              shui:200
+            },
+            type:'gaofen'
+          },
+          shengtusi: {
+            name: '生吐司主面团',
+            peifang: {
+              gaofen: 1000,
+              yan:13,
+              shatang:120,
+              dannaiyou:80,
+              xianjiaomu:20,
+              shui:660,
+              lianru:60,
+              huangyou:100
+            },
+            type:'gaofen'
+          },
+          yicitusi: {
+            name: '一次发酵吐司',
+            peifang: {
+              gaofen: 265,
+              lianru:35,
+              naifen:30,
+              jidan:1,
+              shatang:40,
+              niunai:110,
+              xianjiaomu:8,
+              yan:3,
+              huangyou:30
+            },
+            type:'gaofen'
+          },
         },
         addForm: {
           name: '',
@@ -433,7 +470,13 @@
           }
           return peifangObj
         },
+        filterPeifang(val){
+          let curObj = this.baseMapObj[this.type];
+          let yuanpeifang = curObj.peifang[curObj.type];
+          return yuanpeifang
+        },
         changeType: function () {
+          
           localStorage.setItem('type', this.type);
         },
         filterNum: function (curNum) {
@@ -575,7 +618,7 @@
         </div>
 
 
-        <p>按{{filterType(type)}}换算</p>
+        <p>按{{filterType(type)}}换算,原配方{{filterType(type)}}重量{{filterPeifang(type)}}</p>
 
 
         <template v-for='(item,k) in baseMapObj' v-if="type && weight">
